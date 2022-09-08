@@ -3,26 +3,37 @@ import { useState } from "react";
 
 const carDB = {
   Toyota: [
-    { name: "Fortuner", price: "₹ 32.39 Lakh" },
-    { name: "Innova Crysta", price: "₹ 17.86 Lakh" },
-    { name: "Camry", price: "₹ 44.35 Lakh" },
-    { name: "Urban Cruiser", price: "₹ 9.02 Lakh" }
+    { name: "Fortuner", price: "₹ 32.39 Lakh", rating: "4.4/5" },
+    { name: "Innova Crysta", price: "₹ 17.86 Lakh", rating: "4.5/5" },
+    { name: "Camry", price: "₹ 44.35 Lakh", rating: "5/5" },
+    { name: "Urban Cruiser", price: "₹ 9.02 Lakh", rating: "4.2/5" },
+    { name: "Vellfire", price: "₹ 94.35 Lakh", rating: "4.4/5" },
+    { name: "Glanza", price: "₹ 6.59 Lakh", rating: "4.5/5" },
+    { name: "Hilux", price: "₹ 33.99 Lakh", rating: "2.2/5" }
   ],
   Mahindra: [
-    { name: "Thar", price: "₹ 13.53 Lakh" },
-    { name: "XUV700", price: "₹ 24.58 Lakh" },
-    { name: "Scorpio-N", price: "₹ 23.90 Lakh" }
+    { name: "Thar", price: "₹ 13.53 Lakh", rating: "4.6/5" },
+    { name: "XUV700", price: "₹ 24.58 Lakh", rating: "4.4/5" },
+    { name: "Scorpio-N", price: "₹ 23.90 Lakh", rating: "4.6/5" },
+    { name: "Scorpio CLassic", price: "₹ 11.99 Lakh", rating: "4.2/5" },
+    { name: "XUV300", price: "₹ 8.41 Lakh", rating: "4.4/5" },
+    { name: "Bolero Neo", price: "₹ 9.29 Lakh", rating: "4.5/5" },
+    { name: "KUV100 NXT", price: "₹ 6.21 Lakh", rating: "3.8/5" }
   ],
   Suzuki: [
-    { name: "Brezza", price: "₹ 7.99 Lakh" },
-    { name: "Swift", price: "₹ 5.47 Lakh" },
-    { name: "Baleno", price: "₹ 6.23 Lakh" },
-    { name: "Ertiga", price: "₹ 8.35 Lakh" }
+    { name: "Brezza", price: "₹ 7.99 Lakh", rating: "4.1/5" },
+    { name: "Swift", price: "₹ 5.47 Lakh", rating: "4.4/5" },
+    { name: "Ciaz", price: "₹ 8.78 Lakh", rating: "4.2/5" },
+    { name: "Baleno", price: "₹ 6.23 Lakh", rating: "4.4/5" },
+    { name: "Ertiga", price: "₹ 8.35 Lakh", rating: "4.4/5" },
+    { name: "Dzire", price: "₹ 6.23 Lakh", rating: "4.6/5" }
   ],
   Volkswagen: [
-    { name: "Virtus", price: "₹ 11.22 Lakh" },
-    { name: "Vento", price: "₹ 10.00 Lakh" },
-    { name: "Polo", price: "₹ 6.49 Lakh" }
+    { name: "Virtus", price: "₹ 11.22 Lakh", rating: "4.5/5" },
+    { name: "Vento", price: "₹ 10.00 Lakh", rating: "4.6/5" },
+    { name: "Polo", price: "₹ 6.49 Lakh", rating: "4.5/5" },
+    { name: "Taigun", price: "₹ 11.40 Lakh", rating: "4.1/5" },
+    { name: "Tiguan", price: "₹ 32.79 Lakh", rating: "5/5" }
   ]
 };
 
@@ -36,21 +47,18 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Cars to watch out for!</h1>
-      <p>Checkout my favorite Cars. Select a Brand to get started</p>
+      <h1 className="title">Cars to watch out for!</h1>
+      <p className="intro">
+        Checkout my favorite Cars. Select a Brand to get started
+      </p>
       <div>
         {Object.keys(carDB).map(function brandF(brand) {
           return (
             <button
+              className="brand-btn"
               // onClick={() => brandHandler(brand)}
               onClick={function test() {
                 brandHandler(brand);
-              }}
-              style={{
-                padding: "0.5rem 0.5rem",
-                cursor: "pointer",
-                margin: "5px",
-                borderRadius: "5px"
               }}
             >
               {" "}
@@ -64,21 +72,12 @@ export default function App() {
         <ul>
           {carDB[brand].map(function title(car) {
             return (
-              <li
-                key={car.name}
-                style={{
-                  padding: "1rem",
-                  listStyle: "none",
-                  width: "70%",
-                  margin: "1rem 0rem",
-                  borderRadius: "0.5rem",
-                  textAlign: "left",
-                  border: "Solid",
-                  borderBlockWidth: "1px"
-                }}
-              >
-                <div style={{ fontSize: "larger" }}>{car.name}</div>{" "}
-                <div style={{ fontSize: "Smaller" }}>{car.price}</div>
+              <li key={car.name} className="list-div">
+                <div className="car-name-text">{car.name}</div>{" "}
+                <div className="car-detail-text">
+                  Starting Price: {car.price}
+                </div>
+                <div className="car-detail-text">Rating: {car.rating}</div>
               </li>
             );
           })}
